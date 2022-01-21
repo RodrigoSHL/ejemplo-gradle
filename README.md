@@ -9,7 +9,7 @@
 * Local:      gradle bootRun
 
 ### Testing Application
-* Abrir navegador: http://localhost:8081/rest/mscovid/test?msg=testing
+* Abrir navegador: http://localhost:8082/rest/mscovid/test?msg=testing
 
 ## Linux
 
@@ -20,4 +20,4 @@
 * Local:      gradle bootRun
 
 ### Testing Application
-* curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'
+* curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'

@@ -34,16 +34,29 @@ pipeline {
             steps {
                 script {
                     println "Stage: ${env.STAGE_NAME}"
-                    sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+                    sh "curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'"
                 }
             }
         }
-        stage('Nexus') {
-             steps {
-                script {
-                    println "Stage: ${env.STAGE_NAME}"
-                }
+        stage('nexus') {
+            steps {
+                nexusPublisher nexusInstanceId: '<su-instancia-de-nexus>',
+                nexusRepositoryId: '<su-repo-en-nexus>',
+                packages: [
+                    [
+                        $class: 'MavenPackage',
+                        mavenAssetList: [
+                            [classifier: '', extension: '', filePath: "${env.WORKSPACE}/build/libs/DevOpsUsach2020-0.0.1.jar"]
+                        ],
+                        mavenCoordinate: [
+                            artifactId: 'DevOpsUsach2020',
+                            groupId: 'com.devopsusach2020',
+                            packaging: 'jar',
+                            version: '0.0.1'
+                        ]
+                    ]
+                ]
             }
-        }  
+        } 
     }
 }
