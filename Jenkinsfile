@@ -27,15 +27,15 @@ pipeline {
             steps {
                 script {
                     println "Stage: ${env.STAGE_NAME}"
-                    }
                 }
             }
         }
         stage('Nexus') {
              steps {
-                 script {
+                script {
                     println "Stage: ${env.STAGE_NAME}"
-             }
+                }
+            }
         }  
     }
 }
