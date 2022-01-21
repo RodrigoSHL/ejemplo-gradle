@@ -5,7 +5,7 @@ pipeline {
         stage('Build y Unit Test') {
             steps {
                 script {
-                    sh './gradle clean build'
+                    sh 'gradlew clean build'
                     println "Stage: ${env.STAGE_NAME}"
                 }
             }
@@ -22,7 +22,7 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    sh './gradle clean build'
+                    sh 'gradlew clean build'
                     println "Stage: ${env.STAGE_NAME}"
                 }
             }
