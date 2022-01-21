@@ -5,7 +5,9 @@ pipeline {
         stage('Build y Unit Test') {
             steps {
                 script {
-                    sh 'gradle clean build'
+                    sh 'whoami; ls -ltr'
+                    sh 'chmod +x gradlew'
+                    sh './gradlew clean build'
                     println "Stage: ${env.STAGE_NAME}"
                 }
             }
@@ -22,8 +24,9 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    sh 'gradle clean build'
+                    sh 'nohup bash gradlew bootRun &'
                     println "Stage: ${env.STAGE_NAME}"
+                    sleep 20
                 }
             }
         }
@@ -31,6 +34,7 @@ pipeline {
             steps {
                 script {
                     println "Stage: ${env.STAGE_NAME}"
+                    sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
                 }
             }
         }
