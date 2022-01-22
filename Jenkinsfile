@@ -10,6 +10,17 @@ pipeline {
             steps {
                 script {
                     println 'Pipeline'
+                    println params.buildTool
+                    
+                    if (params.buildTool == 'gradle') {
+                        println 'ejecutar con gradle'
+                    } else {
+                        println 'ejecutar con maven'
+
+                    }
+                    
+                    
+                    
                 }
             }
         }
