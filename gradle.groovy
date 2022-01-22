@@ -30,8 +30,8 @@ def call(){
       sh "curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'"
     }
     stage('nexus') {
-      nexusPublisher nexusInstanceId: '<su-instancia-de-nexus>',
-      nexusRepositoryId: '<su-repo-en-nexus>',
+      nexusPublisher nexusInstanceId: 'Nexus-test-gradle',
+      nexusRepositoryId: 'test-nexus-gradle',
       packages: [
           [
               $class: 'MavenPackage',
