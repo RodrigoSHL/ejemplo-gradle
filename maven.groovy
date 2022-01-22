@@ -10,6 +10,8 @@
 
 def call(){
     stage('Build') {
+        sh 'whoami; ls -ltr'
+        sh 'chmod +x mvnw'
         sh './mvnw clean compile -e'
         println "Stage: ${env.STAGE_NAME}"
     }
