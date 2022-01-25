@@ -10,26 +10,30 @@
 
 def call(){
     stage('Build') {
-        sh 'whoami; ls -ltr'
+        STAGE = env.STAGE_NAME
         sh 'chmod +x mvnw'
         sh './mvnw clean compile -e'
         println "Stage: ${env.STAGE_NAME}"
     }
     stage('Test') {
+        STAGE = env.STAGE_NAME
         sh './mvnw clean test -e'
         println "Stage: ${env.STAGE_NAME}"
     }
     stage('Jar') {
+        STAGE = env.STAGE_NAME
         sh './mvnw clean package -e'
         println "Stage: ${env.STAGE_NAME}"
     }
     stage('Sonar') {
+        STAGE = env.STAGE_NAME
       def scannerHome = tool 'sonar-scanner'; 
       withSonarQubeEnv('sonarqube-server') { // If you have configured more than one global server connection, you can specify its name
       sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-maven -Dsonar.sources=src -Dsonar.java.binaries=build"
       }           
     }
     stage('nexus') {
+        STAGE = env.STAGE_NAME
       nexusPublisher nexusInstanceId: 'Nexus-test-gradle',
       nexusRepositoryId: 'test-nexus',
       packages: [
