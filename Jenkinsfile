@@ -40,8 +40,8 @@ pipeline {
         }
         stage('nexus') {
             steps {
-                nexusPublisher nexusInstanceId: '<su-instancia-de-nexus>',
-                nexusRepositoryId: '<su-repo-en-nexus>',
+                nexusPublisher nexusInstanceId: 'Nexus-test-gradle',
+                nexusRepositoryId: 'test-nexus-gradle',
                 packages: [
                     [
                         $class: 'MavenPackage',
